@@ -2,8 +2,14 @@
   "name": "angular-basic",
   "version": "0.0.0",
   "scripts": {
+    "build:prod": "ng build --prod",
+    "build:pud": "ng build --prod --output-path docs --base-href https://jandromejia97.github.io/angular-basic/",
+    "http-server": "http-server ./dist/angular-basic/ -c-1 -p4271 -a localhost -o",
     "ng": "ng",
-    "start": "ng serve",
+    "start": "ng serve --aot -o --port 4270",
+    "start:prod": "npm run build:prod && npm run http-server",
+    "pub": "npm run build:pub && npm run push",
+    "push": "git add * && git commit -m 'pub' && git push",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
@@ -19,6 +25,7 @@
     "@angular/platform-browser": "~8.2.5",
     "@angular/platform-browser-dynamic": "~8.2.5",
     "@angular/router": "~8.2.5",
+    "mini.css": "^3.0.1",
     "rxjs": "~6.4.0",
     "tslib": "^1.10.0",
     "zone.js": "~0.9.1"
