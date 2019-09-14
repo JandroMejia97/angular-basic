@@ -26,6 +26,10 @@ const routes: Routes = [
     loadChildren: () => import('./flow/car/car.module').then(c => c.CarModule)
   },
   {
+    path: 'calculator',
+    loadChildren: () => import('./inject/converter/converter.module').then(c => c.ConverterModule)
+  },
+  {
     path: 'not-found',
     component: NotFoundComponent
   },
