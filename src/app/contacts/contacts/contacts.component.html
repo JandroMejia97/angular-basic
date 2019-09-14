@@ -1,0 +1,79 @@
+<h2>{{ header}}</h2>
+<p>{{ description | uppercase }}</p>
+<p>
+  You have
+  <mark [class]="counterClass">
+    {{ countContacts() }}
+  </mark>
+  contacts right now.
+</p>
+<ul *ngIf="countContacts()>0; else empty">
+  <li *ngFor="let contact of contacts">
+    <span>{{ contact.name }}</span>
+    <input type="button" value="Delete" (click)="popContact(contact)">
+  </li>
+</ul>
+<ng-template #empty>
+  <i>No data yet</i>
+</ng-template>
+
+<input *ngIf="formHidden; else showForm" type="button" value="Show Form" (click)="setFormHidden(true)">
+<ng-template #showForm>
+  <input type="button" value="Hidde Form" (click)="setFormHidden(false)">
+</ng-template>
+<form [ngClass]="{ 'hidden': formHidden }">
+  <fieldset>
+    <legend>Contact Form</legend>
+    <section>
+      <label for="name">
+        Name
+        <input type="text"
+          name="name"
+          placeholder="Contact name"
+          [(ngModel)]="contact.name">
+      </label>
+    </section>
+    <section>
+      <label for="isVip">
+        Is VIP
+        <input type="checkbox"
+          name="isVip"
+          [(ngModel)]="contact.isVip">
+        </label>
+      </section>
+      <section>
+        <label for="gender">
+          Gender
+          <input type="radio" name="gender" value="male" [(ngModel)]="contact.gender">
+          <i>Male</i>
+          <input type="radio" name="gender" value="female" [(ngModel)]="contact.gender">
+          <i>Female</i>
+        </label>
+      </section>
+      <section>
+        <label for="workStatus">
+          Work Stauts
+          <select name="workStatus" [(ngModel)]="contact.workStatus">
+            <option *ngFor="let workState of keys(workStatuses)" [ngValue]="workStatuses[workState]">
+              {{ workState }}
+            </option>
+          </select>
+        </label>
+      </section>
+      <section *ngIf="contact.workStatus=='Employed';else education">
+        <label for="company">
+          Company Name
+          <input type="text" name="company" [(ngModel)]="contact.company">
+        </label>
+      </section>
+      <ng-template #education>
+        <section>
+          <label for="education">
+            Education
+            <input type="text" name="education" [(ngModel)]="contact.education">
+          </label>
+        </section>
+      </ng-template>
+      <input type="submit" value="Save" (click)="addContact(contact)">
+  </fieldset>
+</form>
