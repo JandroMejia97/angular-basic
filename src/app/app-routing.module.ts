@@ -22,6 +22,10 @@ const routes: Routes = [
     component: HeroesComponent
   },
   {
+    path: 'car',
+    loadChildren: () => import('./flow/car/car.module').then(c => c.CarModule)
+  },
+  {
     path: 'not-found',
     component: NotFoundComponent
   },
