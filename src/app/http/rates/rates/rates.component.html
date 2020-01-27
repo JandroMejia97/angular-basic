@@ -1,0 +1,13 @@
+<h2>Currency Rates.</h2>
+<h3>From Euro to the world</h3>
+<pre>{{ currentEuroRates | json }}</pre>
+<input type="button"
+  value="Save Rates"
+  (click)="postRatesByDate()">
+<input type="button"
+  value="Refresh"
+  (click)="getRatesByDate()">
+<input type="button"
+  value="Delete"
+  (click)="deleteRatesByDate()">
+<pre>{{ ratesByDate | json }}</pre>

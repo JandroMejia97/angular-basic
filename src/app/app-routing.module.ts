@@ -30,6 +30,10 @@ const routes: Routes = [
     loadChildren: () => import('./inject/converter/converter.module').then(c => c.ConverterModule)
   },
   {
+    path: 'rates',
+    loadChildren: () => import('./http/rates/rates.module').then(r => r.RatesModule)
+  },
+  {
     path: 'not-found',
     component: NotFoundComponent
   },
